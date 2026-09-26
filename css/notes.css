@@ -18,7 +18,6 @@
 .toc-link,
 .toc-ch-name,
 .toc-ch-count,
-.toc-updated,
 .toc-search input {
   color: #000;
 }
@@ -30,8 +29,7 @@
 [data-theme="dark"] .toc-link,
 [data-theme="dark"] .toc-ch-name,
 [data-theme="dark"] .toc-ch-count,
-[data-theme="dark"] .toc-updated,
-[data-theme="dark"] .toc-search input {
+[data-theme="dark"] [data-theme="dark"] .toc-search input {
   color: #f5f7fa;
 }
 .note-sec li b { color: #1d4ed8; font-weight: 700; }
@@ -164,15 +162,6 @@
 [data-theme="dark"] .toc-link:hover { color: #f5f7fa; }
 .toc-link.hidden { display: none; }
 .toc-chapter.hidden { display: none; }
-
-.toc-updated {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--line);
-  font-size: .72rem;
-  color: var(--text-faint);
-  text-align: center;
-}
 
 /* ---------- 右侧内容 ---------- */
 .note-chapter { padding: 34px 36px 30px; margin-bottom: 24px; scroll-margin-top: 96px; }

@@ -105,7 +105,6 @@ const I18N = {
     "notes.back": "返回主页",
     "notes.search": "搜索小节…",
     "notes.toc": "目录",
-    "notes.updated": "最后更新",
     "notes.noresult": "没有匹配的小节",
 
     "modal.title": "我的邮箱",
@@ -223,7 +222,6 @@ const I18N = {
     "notes.back": "Back to Home",
     "notes.search": "Filter sections…",
     "notes.toc": "Contents",
-    "notes.updated": "Last updated",
     "notes.noresult": "No matching sections",
 
     "modal.title": "My Email",

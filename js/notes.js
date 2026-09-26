@@ -101,7 +101,6 @@
 
   tocNav.innerHTML = tocHtml;
   content.innerHTML = contentHtml;
-  $("#tocUpdated").textContent = DATA.updated;
 
   /* ---------- 章折叠 ---------- */
   var chapters = $$(".toc-chapter");
