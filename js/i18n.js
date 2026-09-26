@@ -114,7 +114,6 @@ const I18N = {
     "modal.open": "打开邮件应用",
 
     "footer.built": "© 2026 周晨博 · 原生 HTML / CSS / JS 构建",
-    "footer.hosted": "托管于 Upma"
   },
 
   en: {
@@ -231,6 +230,5 @@ const I18N = {
     "modal.open": "Open Mail App",
 
     "footer.built": "© 2026 Chenbo Zhou · Built with vanilla HTML / CSS / JS",
-    "footer.hosted": "Hosted on Upma"
   }
 };
