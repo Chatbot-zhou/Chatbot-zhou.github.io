@@ -49,9 +49,11 @@
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
-  function bold(s) {
-    /* 先转义 HTML，再把 **关键词** 转成 <b> */
-    return esc(s).replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+  function fmt(s) {
+    /* 转义 HTML 后：`代码` → 代码框，**关键词** → 加粗 */
+    return esc(s)
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   }
 
   var tocNav = $("#tocNav");
@@ -78,10 +80,19 @@
 
     ch.sections.forEach(function (sec, i) {
       var sid = cid + "-s" + i;
-      tocHtml += '<a class="toc-link" href="#' + sid + '" data-ch="' + cid + '" data-search="' + esc((sec.t + " " + sec.points.join(" ")).toLowerCase()) + '">' + esc(sec.t) + '</a>';
-      contentHtml += '<div class="note-sec" id="' + sid + '"><h3>' + esc(sec.t) + '</h3><ul>' +
-        sec.points.map(function (p) { return "<li>" + bold(p) + "</li>"; }).join("") +
-        '</ul></div>';
+      tocHtml += '<a class="toc-link" href="#' + sid + '" data-ch="' + cid + '" data-search="' + esc((sec.t + " " + (sec.lead || "") + " " + sec.points.join(" ")).toLowerCase()) + '">' + esc(sec.t) + '</a>';
+      contentHtml += '<div class="note-sec" id="' + sid + '"><h3>' + esc(sec.t) +
+        (sec.doc ? '<a class="sec-doc" href="' + esc(sec.doc) + '" target="_blank" rel="noopener">官方文档 ↗</a>' : '') +
+        '</h3>' +
+        (sec.lead ? '<p class="sec-lead">' + fmt(sec.lead) + '</p>' : '') +
+        '<' + (sec.ordered ? 'ol' : 'ul') + ' class="pts">' +
+        sec.points.map(function (p) {
+          var warn = p.indexOf("⚠") === 0;
+          return '<li' + (warn ? ' class="warn"' : '') + '>' + fmt(p) + '</li>';
+        }).join("") +
+        '</' + (sec.ordered ? 'ol' : 'ul') + '>' +
+        (sec.see ? '<p class="see-chip">' + esc(sec.see) + '</p>' : '') +
+        '</div>';
     });
 
     tocHtml += '</div></div>';
@@ -111,20 +122,22 @@
   var linkMap = {};
   $$(".toc-link").forEach(function (a) { linkMap[a.getAttribute("href").slice(1)] = a; });
 
-  function setActive(id) {
+  function setActive(id, keepChapters) {
     $$(".toc-link.active").forEach(function (a) { a.classList.remove("active"); });
     var link = linkMap[id];
+    if (keepChapters) { /* 搜索过滤中：只更新高亮，不打破用户看到的展开状态 */
+      if (link) link.classList.add("active");
+      return;
+    }
+    /* 手风琴跟随：正在看的章展开，其余全部折叠；尚未进入任何节时视为第一章 */
+    var target = link ? link.closest(".toc-chapter") : chapters[0];
+    chapters.forEach(function (ch) { openChapter(ch, ch === target); });
     if (!link) return;
     link.classList.add("active");
-    var ch = link.closest(".toc-chapter");
-    if (ch && !ch.classList.contains("open")) openChapter(ch, true);
-    var head = ch ? ch.querySelector(".toc-ch-head") : null;
-    if (head) {
-      var nr = tocNav.getBoundingClientRect();
-      var hr = head.getBoundingClientRect();
-      if (hr.top < nr.top - 4 || hr.bottom > nr.bottom + 4) head.scrollIntoView({ block: "start" });
-    }
-    link.scrollIntoView({ block: "nearest" });
+    /* 只滚动目录容器自身——scrollIntoView 会连带滚动页面，造成高亮回跳 */
+    var nr = tocNav.getBoundingClientRect();
+    var lr = link.getBoundingClientRect();
+    if (lr.top < nr.top || lr.bottom > nr.bottom) tocNav.scrollTop += lr.top - nr.top - 24;
   }
 
   /* ---------- 滚动高亮：scroll 监听 + rAF 节流 ---------- */
@@ -140,7 +153,7 @@
     }
     /* 滚到页底时强制点亮最后一节 */
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) current = secEls[secEls.length - 1];
-    setActive(current ? current.id : null);
+    setActive(current ? current.id : null, searchInput.value.trim() !== "");
   }
   window.addEventListener("scroll", function () {
     if (!pending) { pending = true; requestAnimationFrame(updateActive); }
@@ -225,21 +238,6 @@
       navToggle.setAttribute("aria-expanded", "false");
     });
   });
-
-  /* ---------- 大标题滚出视口 → 导航中间链接组替换为页面标题 ---------- */
-  var headTitle = $(".notes-head h1");
-  var swapPending = false;
-  function updateNavTitle() {
-    swapPending = false;
-    if (!headTitle) return;
-    /* 大标题底边越过导航栏底边 = 已完全被导航遮住（滚出屏幕），触发替换 */
-    var gone = headTitle.getBoundingClientRect().bottom <= nav.getBoundingClientRect().bottom;
-    nav.classList.toggle("title-in", gone);
-  }
-  window.addEventListener("scroll", function () {
-    if (!swapPending) { swapPending = true; requestAnimationFrame(updateNavTitle); }
-  }, { passive: true });
-  updateNavTitle();
 
   /* ---------- 启动 ---------- */
   applyLang(currentLang);

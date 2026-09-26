@@ -50,42 +50,7 @@
   margin-top: 6px;
 }
 
-/* ---------- 导航中间标题替换 ----------
-   顶部时中间是与主页一致的整组链接；大标题滚到导航栏
-   后方（视口外）后，整组链接平滑换成页面标题，回滚换回。
-   两层面叠放在同一格子里，宽度取链接组，切换时零位移 */
-.nav-swap {
-  display: grid;
-  justify-items: center;
-}
-.swap-face {
-  grid-area: 1 / 1;
-  min-width: 0;
-  transition: opacity .3s ease, transform .42s cubic-bezier(.22, .8, .35, 1), visibility 0s linear 0s;
-}
-.swap-links { display: flex; gap: 4px; }
-.swap-title {
-  display: inline-flex;
-  align-items: center;
-  font-weight: 700;
-  letter-spacing: .5px;
-  color: var(--text);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(14px);
-}
-.nav.title-in .swap-links {
-  opacity: 0;
-  transform: translateY(-12px);
-  visibility: hidden;
-  pointer-events: none;
-  /* 先等淡出完成再隐藏，回滚时立即恢复可见 */
-  transition: opacity .3s ease, transform .42s cubic-bezier(.22, .8, .35, 1), visibility 0s linear .34s;
-}
-.nav.title-in .swap-title {
-  opacity: 1;
-  transform: none;
-}
+/* ---------- 导航：结构样式全部复用 style.css 的 .nav-links，与主页一致 ---------- */
 
 /* ---------- 双栏布局 ---------- */
 .notes-layout {
@@ -96,6 +61,8 @@
 }
 
 /* ---------- 左侧目录 ---------- */
+/* 关闭按钮仅用于移动端抽屉；桌面端隐藏（否则裸 button 显示为方框叉号） */
+.toc-close { display: none; }
 .notes-sidebar {
   position: sticky;
   top: 92px;
@@ -350,21 +317,74 @@
   .note-sec li { margin-bottom: 10px; }
 }
 
-/* ---------- 移动端：导航变为下拉菜单，停用标题替换 ---------- */
-@media (max-width: 720px) {
-  .nav-swap { display: block; }
-  .swap-face { transition: none; }
-  .swap-links { flex-direction: column; gap: 4px; }
-  .swap-title { display: none; }
-  .nav.title-in .swap-links {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-    pointer-events: auto;
-  }
-}
-
 /* ---------- 动效减弱 ---------- */
 @media (prefers-reduced-motion: reduce) {
   .notes-sidebar { transition: none; }
 }
+
+/* ---------- 导览式：讲解句 / 代码框 / 官方文档 / 另见 / 编号 ---------- */
+.note-sec .sec-lead {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #000;
+  margin: 10px 0 2px;
+}
+[data-theme="dark"] .note-sec .sec-lead { color: #f5f7fa; }
+
+.note-sec code {
+  font-family: Consolas, Menlo, "Courier New", monospace;
+  font-size: .87em;
+  background: rgba(93, 120, 160, .13);
+  border: 1px solid rgba(93, 120, 160, .2);
+  border-radius: 6px;
+  padding: 1px 6px;
+  color: #000;
+  word-break: break-all;
+}
+[data-theme="dark"] .note-sec code {
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .16);
+  color: #f5f7fa;
+}
+
+.note-sec h3 .sec-doc {
+  margin-left: auto;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--accent-blue-deep);
+  background: var(--chip-bg);
+  border: 1px solid rgba(120, 170, 255, .4);
+  padding: 2px 10px;
+  border-radius: 999px;
+  transition: background .25s ease, transform .25s ease;
+}
+[data-theme="dark"] .note-sec h3 .sec-doc { color: #9fd0ff; }
+.note-sec h3 .sec-doc:hover { background: var(--grad-soft); transform: translateY(-1px); }
+
+.note-sec li.warn::before { background: var(--accent-pink-deep); opacity: 1; }
+.note-chapter:nth-of-type(even) .note-sec li.warn::before { background: var(--accent-blue); opacity: 1; }
+
+.note-sec ol.pts { counter-reset: item; }
+.note-sec ol.pts > li { list-style: none; counter-increment: item; }
+.note-sec ol.pts > li::before {
+  content: counter(item) ".";
+  width: auto;
+  background: transparent;
+  color: var(--accent-blue-deep);
+  font-weight: 700;
+  top: .1em;
+  opacity: 1;
+}
+.note-chapter:nth-of-type(even) .note-sec ol.pts > li::before { color: var(--accent-pink-deep); }
+
+.note-sec .see-chip {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: .75rem;
+  color: #000;
+  background: var(--chip-bg);
+  border: 1px dashed var(--line);
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+[data-theme="dark"] .note-sec .see-chip { color: #f5f7fa; }
