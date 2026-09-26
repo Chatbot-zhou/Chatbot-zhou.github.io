@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>学习笔记 · 周晨博 | 大模型应用开发</title>
+  <meta name="description" content="大模型应用开发学习笔记：大模型基础、提示词工程、智能体平台、RAG、Agent/MCP、微调、部署、知识图谱等 14 章系统知识点。" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/notes.css" />
+</head>
+<body>
+
+  <!-- 漂浮渐变光斑背景 -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-blue"></div>
+    <div class="blob blob-pink"></div>
+    <div class="blob blob-violet"></div>
+  </div>
+
+  <!-- 导航 -->
+  <header class="nav" id="siteNav">
+    <div class="nav-inner container">
+      <a class="nav-logo" href="index.html"><span data-i18n="nav.logo">周晨博</span><span class="logo-dot">.</span></a>
+
+      <nav class="nav-links" id="navLinks" aria-label="导航">
+        <a href="index.html" class="notes-home-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+          <span data-i18n="notes.back">返回主页</span>
+        </a>
+      </nav>
+
+      <div class="nav-controls">
+        <button class="ctrl-btn" id="langBtn" type="button" aria-label="切换语言" title="Switch language">EN</button>
+        <button class="ctrl-btn" id="themeBtn" type="button" aria-label="切换主题">
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="notes-page">
+    <div class="container notes-head">
+      <span class="eyebrow">Study Notes</span>
+      <h1 data-i18n="notes.title">学习笔记</h1>
+      <p class="notes-sub" data-i18n="notes.sub">大模型应用开发课程知识点整理：从基础原理到项目实战的 14 章体系化笔记。</p>
+    </div>
+
+    <div class="container notes-layout">
+      <!-- 左侧目录 -->
+      <aside class="glass notes-sidebar" id="sidebar" aria-label="笔记目录">
+        <div class="toc-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="tocSearch" data-i18n-placeholder="notes.search" placeholder="搜索小节…" autocomplete="off" />
+        </div>
+        <nav class="toc-nav" id="tocNav"><!-- JS 渲染 --></nav>
+        <p class="toc-updated"><span data-i18n="notes.updated">最后更新</span> · <span id="tocUpdated">2026-09-26</span></p>
+      </aside>
+
+      <!-- 右侧内容 -->
+      <article class="notes-content" id="notesContent"><!-- JS 渲染 --></article>
+    </div>
+
+    <p class="toc-empty" id="tocEmpty" hidden data-i18n="notes.noresult">没有匹配的小节</p>
+  </main>
+
+  <!-- 移动端目录按钮 -->
+  <button class="toc-fab" id="tocFab" type="button" aria-label="打开目录">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+    <span data-i18n="notes.toc">目录</span>
+  </button>
+  <div class="toc-mask" id="tocMask" hidden></div>
+
+  <footer class="footer">
+    <p><span data-i18n="footer.built">© 2026 周晨博 · 原生 HTML / CSS / JS 构建</span> · <span data-i18n="footer.hosted">托管于 Upma</span></p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/notes-data.js"></script>
+  <script src="js/notes.js"></script>
+</body>
+</html>

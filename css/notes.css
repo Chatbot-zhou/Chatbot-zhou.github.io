@@ -1,0 +1,254 @@
+/* ============================================================
+   学习笔记页样式（依赖 style.css 的变量与玻璃组件）
+   ============================================================ */
+
+.notes-page { padding: 120px 0 60px; }
+
+/* ---------- 页头 ---------- */
+.notes-head { margin-bottom: 34px; }
+.notes-head h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+.notes-sub { color: var(--text-soft); margin-top: 10px; max-width: 640px; }
+
+/* ---------- 双栏布局 ---------- */
+.notes-layout {
+  display: grid;
+  grid-template-columns: 292px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+/* ---------- 左侧目录 ---------- */
+.notes-sidebar {
+  position: sticky;
+  top: 92px;
+  max-height: calc(100vh - 116px);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px 12px;
+}
+.toc-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--chip-bg);
+  color: var(--text-faint);
+  margin-bottom: 12px;
+  transition: border-color .25s ease;
+}
+.toc-search:focus-within { border-color: rgba(120, 170, 255, .55); }
+.toc-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: .88rem;
+  font-family: inherit;
+}
+.toc-search input::placeholder { color: var(--text-faint); }
+
+.toc-nav { flex: 1; overflow-y: auto; padding-right: 4px; }
+.toc-nav::-webkit-scrollbar { width: 5px; }
+.toc-nav::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+.toc-chapter { margin-bottom: 4px; }
+.toc-ch-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+.toc-ch-head:hover { background: var(--chip-bg); }
+.toc-ch-no {
+  flex-shrink: 0;
+  font-size: .68rem;
+  font-weight: 800;
+  color: var(--chip-text);
+  background: var(--chip-bg);
+  border-radius: 7px;
+  padding: 2px 7px;
+  font-variant-numeric: tabular-nums;
+}
+.toc-ch-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toc-ch-count {
+  flex-shrink: 0;
+  font-size: .7rem;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+.toc-ch-arrow {
+  flex-shrink: 0;
+  color: var(--text-faint);
+  transition: transform .3s ease;
+}
+.toc-chapter.open .toc-ch-arrow { transform: rotate(90deg); }
+
+.toc-sections { display: none; padding: 2px 0 6px; }
+.toc-chapter.open .toc-sections { display: block; }
+.toc-link {
+  display: block;
+  padding: 6px 10px 6px 14px;
+  margin: 1px 0 1px 10px;
+  border-left: 2px solid var(--line);
+  border-radius: 0 9px 9px 0;
+  font-size: .84rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.toc-link:hover { color: var(--text); background: var(--chip-bg); }
+.toc-link.active {
+  color: var(--accent-blue-deep);
+  border-left-color: var(--accent-pink-deep);
+  background: var(--grad-soft);
+  font-weight: 600;
+}
+.toc-link.hidden { display: none; }
+.toc-chapter.hidden { display: none; }
+
+.toc-updated {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: .72rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* ---------- 右侧内容 ---------- */
+.note-chapter { padding: 30px 32px 26px; margin-bottom: 24px; scroll-margin-top: 96px; }
+.note-ch-head { margin-bottom: 8px; }
+.note-ch-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.note-ch-title h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: .5px; }
+.note-ch-intro { color: var(--text-soft); font-size: .92rem; margin-top: 6px; }
+
+.note-sec { margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); scroll-margin-top: 96px; }
+.note-sec:first-of-type { border-top: 0; margin-top: 18px; padding-top: 0; }
+.note-sec h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.note-sec h3::before {
+  content: "";
+  width: 4px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--grad);
+  flex-shrink: 0;
+}
+.note-sec ul { margin-top: 12px; }
+.note-sec li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: .92rem;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+.note-sec li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .68em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  opacity: .65;
+}
+.note-sec li b {
+  color: var(--accent-blue-deep);
+  font-weight: 700;
+}
+.note-chapter:nth-of-type(even) .note-sec li::before { background: var(--accent-pink); }
+.note-chapter:nth-of-type(even) .note-sec li b { color: var(--accent-pink-deep); }
+
+.toc-empty { text-align: center; color: var(--text-faint); padding: 40px 0; }
+
+/* ---------- 移动端目录按钮 / 抽屉 ---------- */
+.toc-fab {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  z-index: 140;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-strong);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+  color: var(--text);
+  font-size: .88rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: var(--card-shadow-hover);
+}
+.toc-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 149;
+  background: rgba(30, 41, 59, .38);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 960px) {
+  .notes-page { padding-top: 104px; }
+  .notes-layout { grid-template-columns: 1fr; }
+
+  .notes-sidebar {
+    position: fixed;
+    top: 76px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 150;
+    max-height: none;
+    transform: translateX(-112%);
+    transition: transform .35s cubic-bezier(.22, .8, .35, 1);
+  }
+  .notes-sidebar.drawer-open { transform: none; }
+  .toc-fab { display: inline-flex; }
+
+  .note-chapter { padding: 24px 20px 20px; }
+  .note-ch-title h2 { font-size: 1.28rem; }
+}
+
+/* ---------- 动效减弱 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .notes-sidebar { transition: none; }
+}
