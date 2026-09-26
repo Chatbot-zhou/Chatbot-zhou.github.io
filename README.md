@@ -22,6 +22,25 @@ python -m http.server 8080
 
 免费套餐额度：2 个项目 / 每月 1GB 流量，静态页面足够使用。
 
+## 已部署地址（双平台互为容灾）
+
+| 地址 | 说明 |
+| --- | --- |
+| https://fractal-xjhm.upma.site/ | Upma 托管，国内 CDN 访问快 |
+| https://chatbot-zhou.github.io/ | GitHub Pages 托管（仓库 `Chatbot-zhou/Chatbot-zhou.github.io`） |
+
+**更新 GitHub Pages 版本**：本目录已初始化为 git 仓库并关联远程（SSH），改完文件后：
+
+```bash
+git add -A && git commit -m "update" && git push
+```
+
+push 后 Pages 自动重新构建（约 1 分钟）。
+
+## 介绍页双链接
+
+GitHub（`Chatbot-zhou/Chatbot-zhou`）与 Gitee（`chatbotzhou/chatbotzhou`）的介绍 README 已同时挂两个地址：Upma（国内快）+ GitHub Pages（备用）。
+
 ## 目录结构
 
 ```
