@@ -1,10 +1,11 @@
-/* 学习笔记页：渲染目录与内容 / 主题与语言切换 / 滚动高亮 / 搜索过滤 */
+/* 学习笔记页：渲染目录与内容 / 主题与语言切换 / 滚动高亮 / 搜索过滤 / 锚点瞬时定位 */
 (function () {
   "use strict";
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
   var DATA = window.NOTES_DATA || { updated: "", chapters: [] };
+  var TRIGGER = 110; /* 触发线：视口顶部之下 110px，滚过即视为当前节 */
 
   /* ---------- 主题（与主页共用 zc-theme 偏好） ---------- */
   var themeBtn = $("#themeBtn");
@@ -98,37 +99,69 @@
   }
   tocNav.addEventListener("click", function (e) {
     var head = e.target.closest(".toc-ch-head");
-    if (!head) return;
-    var ch = head.parentElement;
-    openChapter(ch, !ch.classList.contains("open"));
+    if (head) {
+      var ch = head.parentElement;
+      openChapter(ch, !ch.classList.contains("open"));
+    }
   });
   openChapter(chapters[0], true);
 
-  /* ---------- 滚动高亮 ---------- */
+  /* ---------- 高亮工具 ---------- */
   var secEls = $$(".note-sec");
   var linkMap = {};
   $$(".toc-link").forEach(function (a) { linkMap[a.getAttribute("href").slice(1)] = a; });
-  var spy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      var id = entry.target.id;
-      $$(".toc-link.active").forEach(function (a) { a.classList.remove("active"); });
-      var link = linkMap[id];
-      if (link) {
-        link.classList.add("active");
-        var ch = link.closest(".toc-chapter");
-        if (ch && !ch.classList.contains("open")) openChapter(ch, true);
-        if (ch) {
-          var head = ch.querySelector(".toc-ch-head");
-          var navRect = tocNav.getBoundingClientRect();
-          var r = head.getBoundingClientRect();
-          if (r.top < navRect.top - 4 || r.bottom > navRect.bottom + 4) head.scrollIntoView({ block: "start" });
-        }
-        if (link.scrollIntoViewIfNeeded) link.scrollIntoViewIfNeeded(false);
-      }
-    });
-  }, { rootMargin: "-15% 0px -70% 0px" });
-  secEls.forEach(function (el) { spy.observe(el); });
+
+  function setActive(id) {
+    $$(".toc-link.active").forEach(function (a) { a.classList.remove("active"); });
+    var link = linkMap[id];
+    if (!link) return;
+    link.classList.add("active");
+    var ch = link.closest(".toc-chapter");
+    if (ch && !ch.classList.contains("open")) openChapter(ch, true);
+    var head = ch ? ch.querySelector(".toc-ch-head") : null;
+    if (head) {
+      var nr = tocNav.getBoundingClientRect();
+      var hr = head.getBoundingClientRect();
+      if (hr.top < nr.top - 4 || hr.bottom > nr.bottom + 4) head.scrollIntoView({ block: "start" });
+    }
+    link.scrollIntoView({ block: "nearest" });
+  }
+
+  /* ---------- 滚动高亮：scroll 监听 + rAF 节流 ---------- */
+  /* 取“最后一个滚过触发线的小节”为当前节，避免视口带监听漏掉矮小节 */
+  var pending = false;
+  function updateActive() {
+    pending = false;
+    var current = null;
+    var ref = window.scrollY + TRIGGER;
+    for (var i = 0; i < secEls.length; i++) {
+      if (secEls[i].getBoundingClientRect().top + window.scrollY <= ref) current = secEls[i];
+      else break;
+    }
+    /* 滚到页底时强制点亮最后一节 */
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) current = secEls[secEls.length - 1];
+    setActive(current ? current.id : null);
+  }
+  window.addEventListener("scroll", function () {
+    if (!pending) { pending = true; requestAnimationFrame(updateActive); }
+  }, { passive: true });
+
+  /* ---------- 侧栏点击：瞬时定位 + 立即高亮 ---------- */
+  function jumpTo(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (history.replaceState) history.replaceState(null, "", "#" + id);
+    var top = el.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top: Math.max(top, 0), behavior: "instant" });
+    setActive(id);
+  }
+  tocNav.addEventListener("click", function (e) {
+    var link = e.target.closest(".toc-link");
+    if (!link) return;
+    e.preventDefault();
+    jumpTo(link.getAttribute("href").slice(1));
+    if (window.innerWidth <= 960) closeDrawer();
+  });
 
   /* ---------- 搜索过滤 ---------- */
   var searchInput = $("#tocSearch");
@@ -172,19 +205,20 @@
 
   /* ---------- 导航滚动态 ---------- */
   var nav = $("#siteNav");
-  function onScroll() { nav.classList.toggle("scrolled", window.scrollY > 24); }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  function onScrollNav() { nav.classList.toggle("scrolled", window.scrollY > 24); }
+  window.addEventListener("scroll", onScrollNav, { passive: true });
+  onScrollNav();
 
-  /* ---------- 初始定位（支持 #ch06-s3 锚点直达） ---------- */
+  /* ---------- 启动 ---------- */
   applyLang(currentLang);
-  if (location.hash) {
-    var target = document.getElementById(location.hash.slice(1));
-    if (target) {
-      var chEl = target.closest(".toc-chapter") || null;
-      var link = linkMap[target.id];
-      if (link && link.closest(".toc-chapter")) openChapter(link.closest(".toc-chapter"), true);
-      setTimeout(function () { target.scrollIntoView({ block: "start" }); }, 60);
-    }
+  var initialHash = location.hash.slice(1);
+  if (initialHash && document.getElementById(initialHash)) {
+    var link = linkMap[initialHash];
+    if (link && link.closest(".toc-chapter")) openChapter(link.closest(".toc-chapter"), true);
+    setTimeout(function () {
+      jumpTo(initialHash);
+    }, 80);
+  } else {
+    updateActive();
   }
 })();

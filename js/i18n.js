@@ -102,7 +102,6 @@ const I18N = {
 
     "notes.doc_title": "学习笔记 · 周晨博 | 大模型应用开发",
     "notes.title": "学习笔记",
-    "notes.sub": "大模型应用开发课程知识点整理：从基础原理到项目实战的 14 章体系化笔记。",
     "notes.back": "返回主页",
     "notes.search": "搜索小节…",
     "notes.toc": "目录",
@@ -221,7 +220,6 @@ const I18N = {
 
     "notes.doc_title": "Study Notes · Chenbo Zhou | LLM Application Development",
     "notes.title": "Study Notes",
-    "notes.sub": "Systematic study notes from an LLM application development course: 14 chapters from fundamentals to hands-on projects.",
     "notes.back": "Back to Home",
     "notes.search": "Filter sections…",
     "notes.toc": "Contents",

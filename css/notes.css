@@ -1,8 +1,42 @@
 /* ============================================================
    学习笔记页样式（依赖 style.css 的变量与玻璃组件）
+   阅读优先：正文纯黑（浅色主题）/ 近纯白（深色主题），
+   关键词用高对比深蓝/深玫红，禁用灰色淡色正文
    ============================================================ */
 
 .notes-page { padding: 120px 0 60px; }
+
+/* ---------- 阅读可读性覆盖 ---------- */
+.notes-head h1,
+.note-ch-title h2,
+.note-sec h3,
+.note-sec li,
+.note-ch-intro,
+.toc-link,
+.toc-ch-name,
+.toc-ch-count,
+.toc-updated,
+.toc-search input {
+  color: #000;
+}
+[data-theme="dark"] .notes-head h1,
+[data-theme="dark"] .note-ch-title h2,
+[data-theme="dark"] .note-sec h3,
+[data-theme="dark"] .note-sec li,
+[data-theme="dark"] .note-ch-intro,
+[data-theme="dark"] .toc-link,
+[data-theme="dark"] .toc-ch-name,
+[data-theme="dark"] .toc-ch-count,
+[data-theme="dark"] .toc-updated,
+[data-theme="dark"] .toc-search input {
+  color: #f5f7fa;
+}
+.note-sec li b { color: #1d4ed8; font-weight: 700; }
+.note-chapter:nth-of-type(even) .note-sec li b { color: #be185d; }
+[data-theme="dark"] .note-sec li b { color: #7cc0ff; }
+[data-theme="dark"] .note-chapter:nth-of-type(even) .note-sec li b { color: #ffa8cf; }
+.toc-link.active { color: #000; font-weight: 700; }
+[data-theme="dark"] .toc-link.active { color: #f5f7fa; }
 
 /* ---------- 页头 ---------- */
 .notes-head { margin-bottom: 34px; }
@@ -12,7 +46,6 @@
   letter-spacing: 1px;
   margin-top: 6px;
 }
-.notes-sub { color: var(--text-soft); margin-top: 10px; max-width: 640px; }
 
 /* ---------- 双栏布局 ---------- */
 .notes-layout {
@@ -116,13 +149,12 @@
   line-height: 1.5;
   transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
-.toc-link:hover { color: var(--text); background: var(--chip-bg); }
+.toc-link:hover { color: #000; background: var(--chip-bg); }
 .toc-link.active {
-  color: var(--accent-blue-deep);
   border-left-color: var(--accent-pink-deep);
   background: var(--grad-soft);
-  font-weight: 600;
 }
+[data-theme="dark"] .toc-link:hover { color: #f5f7fa; }
 .toc-link.hidden { display: none; }
 .toc-chapter.hidden { display: none; }
 
@@ -146,7 +178,7 @@
   margin-top: 6px;
 }
 .note-ch-title h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: .5px; }
-.note-ch-intro { color: var(--text-soft); font-size: .92rem; margin-top: 6px; }
+.note-ch-intro { font-size: .92rem; margin-top: 6px; }
 
 .note-sec { margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); scroll-margin-top: 96px; }
 .note-sec:first-of-type { border-top: 0; margin-top: 18px; padding-top: 0; }
@@ -171,7 +203,6 @@
   padding-left: 20px;
   margin-bottom: 8px;
   font-size: .92rem;
-  color: var(--text-soft);
   line-height: 1.8;
 }
 .note-sec li::before {
@@ -185,14 +216,10 @@
   background: var(--accent-blue);
   opacity: .65;
 }
-.note-sec li b {
-  color: var(--accent-blue-deep);
-  font-weight: 700;
-}
 .note-chapter:nth-of-type(even) .note-sec li::before { background: var(--accent-pink); }
-.note-chapter:nth-of-type(even) .note-sec li b { color: var(--accent-pink-deep); }
 
-.toc-empty { text-align: center; color: var(--text-faint); padding: 40px 0; }
+.toc-empty { text-align: center; color: #000; padding: 40px 0; }
+[data-theme="dark"] .toc-empty { color: #f5f7fa; }
 
 /* ---------- 移动端目录按钮 / 抽屉 ---------- */
 .toc-fab {
