@@ -45,10 +45,14 @@ GitHub（`Chatbot-zhou/Chatbot-zhou`）与 Gitee（`chatbotzhou/chatbotzhou`）�
 
 ```
 personal-homepage/
-├── index.html        # 单页结构（Hero / 数据 / 关于 / 技能 / 经历 / 项目 / 开源 / 联系）
+├── index.html        # 主页（Hero / 数据 / 关于 / 技能 / 经历 / 项目 / 开源 / 联系）
+├── notes.html        # 学习笔记页（9 章大模型核心知识体系）
 ├── css/style.css     # 浅色玻璃拟态 + 深色主题（CSS 变量驱动），动效与响应式
-├── js/i18n.js        # 中英双语字典（改文案主要改这里）
-├── js/main.js        # 主题切换、语言切换、打字机、进场动画、数字滚动、导航
+├── css/notes.css     # 笔记页双栏布局与导览式排版
+├── js/i18n.js        # 中英双语字典（改界面文案主要改这里）
+├── js/notes-data.js  # 笔记数据（window.NOTES_DATA，改笔记内容改这里）
+├── js/notes.js       # 笔记页逻辑（渲染目录、滚动高亮、搜索、抽屉）
+├── js/main.js        # 主页逻辑（主题切换、语言切换、打字机、进场动画）
 ├── assets/favicon.svg
 └── README.md
 ```
