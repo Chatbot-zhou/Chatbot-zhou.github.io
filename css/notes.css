@@ -262,7 +262,8 @@
 
   /* 笔记页导航沿用主页的汉堡下拉交互（navToggle 在 notes.js 中处理） */
 
-  /* 目录改为左侧滑入面板 */
+  /* 目录改为左侧滑入面板（移动端瞬时开合，不依赖 transition——
+     避免后台标签恢复/渲染节流时动画冻结导致抽屉"打不开/关不上"） */
   .notes-sidebar {
     position: fixed;
     top: 0;
@@ -274,7 +275,6 @@
     border-radius: 0 22px 22px 0;
     padding-top: 52px;
     transform: translateX(-105%);
-    transition: transform .35s cubic-bezier(.22, .8, .35, 1);
     overscroll-behavior: contain;
   }
   .notes-sidebar.drawer-open { transform: none; }
@@ -292,6 +292,7 @@
     background: var(--card);
     color: var(--text-soft);
     cursor: pointer;
+    z-index: 5;
   }
   .toc-fab { display: inline-flex; bottom: calc(18px + env(safe-area-inset-bottom)); }
   body.drawer-lock { overflow: hidden; }

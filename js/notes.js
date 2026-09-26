@@ -199,18 +199,24 @@
   var sidebar = $("#sidebar");
   var fab = $("#tocFab");
   var mask = $("#tocMask");
-  var tocClose = $("#tocClose");
   function closeDrawer() {
     sidebar.classList.remove("drawer-open");
     mask.hidden = true;
     document.body.classList.remove("drawer-lock");
   }
+  function openDrawer() {
+    sidebar.classList.add("drawer-open");
+    mask.hidden = false;
+    document.body.classList.add("drawer-lock");
+  }
   fab.addEventListener("click", function () {
-    var open = sidebar.classList.toggle("drawer-open");
-    mask.hidden = !open;
-    document.body.classList.toggle("drawer-lock", open);
+    var open = sidebar.classList.contains("drawer-open");
+    if (open) closeDrawer(); else openDrawer();
   });
-  if (tocClose) tocClose.addEventListener("click", closeDrawer);
+  /* 文档级委托：即使按钮被重渲染或事件未直接绑定也能关闭 */
+  document.addEventListener("click", function (e) {
+    if (e.target && e.target.closest && e.target.closest("#tocClose")) closeDrawer();
+  });
   mask.addEventListener("click", closeDrawer);
   tocNav.addEventListener("click", function (e) {
     if (e.target.closest(".toc-link") && window.innerWidth <= 960) closeDrawer();
