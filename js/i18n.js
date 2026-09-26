@@ -10,7 +10,7 @@ const I18N = {
     "nav.projects": "项目",
     "nav.os": "开源",
     "nav.contact": "联系",
-    "nav.notes": "学习笔记",
+    "nav.notes": "笔记",
 
     "hero.badge": "正在寻找 AI 应用开发 / FDE 相关机会",
     "hero.name": "周晨博",
@@ -100,8 +100,8 @@ const I18N = {
     "contact.d": "正在寻找 AI 应用开发 / FDE 相关机会，欢迎通过邮箱或 GitHub 联系我。",
     "contact.btn_email": "发邮件聊聊",
 
-    "notes.doc_title": "学习笔记 · 周晨博 | 大模型应用开发",
-    "notes.title": "学习笔记",
+    "notes.doc_title": "笔记 · 周晨博 · AI 应用开发工程师 | Agent / RAG",
+    "notes.title": "笔记",
     "notes.back": "返回主页",
     "notes.search": "搜索小节…",
     "notes.toc": "目录",
@@ -218,8 +218,8 @@ const I18N = {
     "contact.d": "Open to AI Application / FDE opportunities — feel free to reach out via email or GitHub.",
     "contact.btn_email": "Email Me",
 
-    "notes.doc_title": "Study Notes · Chenbo Zhou | LLM Application Development",
-    "notes.title": "Study Notes",
+    "notes.doc_title": "Notes · Chenbo Zhou · AI Application Engineer | Agent / RAG",
+    "notes.title": "Notes",
     "notes.back": "Back to Home",
     "notes.search": "Filter sections…",
     "notes.toc": "Contents",

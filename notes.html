@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>学习笔记 · 周晨博 | 大模型应用开发</title>
-  <meta name="description" content="大模型应用开发学习笔记：大模型基础、提示词工程、智能体平台、RAG、Agent/MCP、微调、部署、知识图谱等 14 章系统知识点。" />
+  <title>笔记 · 周晨博 · AI 应用开发工程师 | Agent / RAG</title>
+  <meta name="description" content="大模型应用开发知识笔记：Python、数据库、大模型原理、提示词工程、LangChain、RAG、Agent/MCP、智能体平台、微调、部署等 12 大知识域。" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/notes.css" />
 </head>
-<body>
+<body class="page-notes">
 
   <!-- 漂浮渐变光斑背景 -->
   <div class="bg-scene" aria-hidden="true">
@@ -23,11 +23,19 @@
     <div class="nav-inner container">
       <a class="nav-logo" href="index.html"><span data-i18n="nav.logo">周晨博</span><span class="logo-dot">.</span></a>
 
-      <nav class="nav-links" id="navLinks" aria-label="导航">
-        <a href="index.html" class="notes-home-link">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
-          <span data-i18n="notes.back">返回主页</span>
-        </a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <div class="nav-swap">
+          <div class="swap-face swap-links">
+            <a href="index.html#about" data-i18n="nav.about">关于</a>
+            <a href="index.html#skills" data-i18n="nav.skills">技能</a>
+            <a href="index.html#experience" data-i18n="nav.exp">经历</a>
+            <a href="index.html#projects" data-i18n="nav.projects">项目</a>
+            <a href="index.html#opensource" data-i18n="nav.os">开源</a>
+            <a href="notes.html" class="active" data-i18n="nav.notes">笔记</a>
+            <a href="index.html#contact" data-i18n="nav.contact">联系</a>
+          </div>
+          <span class="swap-face swap-title" aria-hidden="true" data-i18n="notes.title">笔记</span>
+        </div>
       </nav>
 
       <div class="nav-controls">
@@ -36,19 +44,25 @@
           <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </button>
+        <button class="ctrl-btn nav-burger" id="navToggle" type="button" aria-label="菜单" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
   <main class="notes-page">
     <div class="container notes-head">
-      <span class="eyebrow">Study Notes</span>
-      <h1 data-i18n="notes.title">学习笔记</h1>
+      <span class="eyebrow">NOTES</span>
+      <h1 data-i18n="notes.title">笔记</h1>
     </div>
 
     <div class="container notes-layout">
       <!-- 左侧目录 -->
       <aside class="glass notes-sidebar" id="sidebar" aria-label="笔记目录">
+        <button class="toc-close" id="tocClose" type="button" aria-label="关闭目录">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
         <div class="toc-search">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           <input type="search" id="tocSearch" data-i18n-placeholder="notes.search" placeholder="搜索小节…" autocomplete="off" />

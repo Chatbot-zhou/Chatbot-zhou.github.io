@@ -7,7 +7,7 @@
 .notes-page { padding: 120px 0 60px; }
 
 /* ---------- 排版三件套：字号 / 行长 / 节奏（光效与透明玻璃卡片保留不变） ---------- */
-.notes-page .container { width: min(1024px, 92%); } /* 内容列约 700px ≈ 40 字/行 */
+/* 页面宽度与主页保持一致（1120px 容器），阅读行长由侧栏比例控制 */
 
 /* ---------- 阅读可读性覆盖 ---------- */
 .notes-head h1,
@@ -50,10 +50,47 @@
   margin-top: 6px;
 }
 
+/* ---------- 导航中间标题替换 ----------
+   顶部时中间是与主页一致的整组链接；大标题滚到导航栏
+   后方（视口外）后，整组链接平滑换成页面标题，回滚换回。
+   两层面叠放在同一格子里，宽度取链接组，切换时零位移 */
+.nav-swap {
+  display: grid;
+  justify-items: center;
+}
+.swap-face {
+  grid-area: 1 / 1;
+  min-width: 0;
+  transition: opacity .3s ease, transform .42s cubic-bezier(.22, .8, .35, 1), visibility 0s linear 0s;
+}
+.swap-links { display: flex; gap: 4px; }
+.swap-title {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--text);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.nav.title-in .swap-links {
+  opacity: 0;
+  transform: translateY(-12px);
+  visibility: hidden;
+  pointer-events: none;
+  /* 先等淡出完成再隐藏，回滚时立即恢复可见 */
+  transition: opacity .3s ease, transform .42s cubic-bezier(.22, .8, .35, 1), visibility 0s linear .34s;
+}
+.nav.title-in .swap-title {
+  opacity: 1;
+  transform: none;
+}
+
 /* ---------- 双栏布局 ---------- */
 .notes-layout {
   display: grid;
-  grid-template-columns: 292px minmax(0, 1fr);
+  grid-template-columns: 336px minmax(0, 1fr);
   gap: 22px;
   align-items: start;
 }
@@ -267,22 +304,64 @@
   .notes-page { padding-top: 104px; }
   .notes-layout { grid-template-columns: 1fr; }
 
+  /* 笔记页导航沿用主页的汉堡下拉交互（navToggle 在 notes.js 中处理） */
+
+  /* 目录改为左侧滑入面板 */
   .notes-sidebar {
     position: fixed;
-    top: 76px;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(86vw, 380px);
     z-index: 150;
     max-height: none;
-    transform: translateX(-112%);
+    border-radius: 0 22px 22px 0;
+    padding-top: 52px;
+    transform: translateX(-105%);
     transition: transform .35s cubic-bezier(.22, .8, .35, 1);
+    overscroll-behavior: contain;
   }
   .notes-sidebar.drawer-open { transform: none; }
-  .toc-fab { display: inline-flex; }
+  .toc-close {
+    display: inline-flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--text-soft);
+    cursor: pointer;
+  }
+  .toc-fab { display: inline-flex; bottom: calc(18px + env(safe-area-inset-bottom)); }
+  body.drawer-lock { overflow: hidden; }
 
-  .note-chapter { padding: 24px 20px 20px; }
+  /* 触屏可读性：目录项加大点击区，输入框 16px 防 iOS 聚焦缩放 */
+  .toc-link { padding: 10px 10px 10px 14px; }
+  .toc-ch-head { padding: 11px 10px; }
+  .toc-search input { font-size: 16px; }
+
+  .note-chapter { padding: 26px 20px 22px; }
   .note-ch-title h2 { font-size: 1.28rem; }
+  .note-sec li { margin-bottom: 10px; }
+}
+
+/* ---------- 移动端：导航变为下拉菜单，停用标题替换 ---------- */
+@media (max-width: 720px) {
+  .nav-swap { display: block; }
+  .swap-face { transition: none; }
+  .swap-links { flex-direction: column; gap: 4px; }
+  .swap-title { display: none; }
+  .nav.title-in .swap-links {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
 /* ---------- 动效减弱 ---------- */

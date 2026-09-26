@@ -187,14 +187,18 @@
   var sidebar = $("#sidebar");
   var fab = $("#tocFab");
   var mask = $("#tocMask");
+  var tocClose = $("#tocClose");
   function closeDrawer() {
     sidebar.classList.remove("drawer-open");
     mask.hidden = true;
+    document.body.classList.remove("drawer-lock");
   }
   fab.addEventListener("click", function () {
     var open = sidebar.classList.toggle("drawer-open");
     mask.hidden = !open;
+    document.body.classList.toggle("drawer-lock", open);
   });
+  if (tocClose) tocClose.addEventListener("click", closeDrawer);
   mask.addEventListener("click", closeDrawer);
   tocNav.addEventListener("click", function (e) {
     if (e.target.closest(".toc-link") && window.innerWidth <= 960) closeDrawer();
@@ -208,6 +212,34 @@
   function onScrollNav() { nav.classList.toggle("scrolled", window.scrollY > 24); }
   window.addEventListener("scroll", onScrollNav, { passive: true });
   onScrollNav();
+
+  /* ---------- 移动端菜单（与主页一致） ---------- */
+  var navToggle = $("#navToggle");
+  navToggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("menu-open");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  $$(".nav-links a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      nav.classList.remove("menu-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  /* ---------- 大标题滚出视口 → 导航中间链接组替换为页面标题 ---------- */
+  var headTitle = $(".notes-head h1");
+  var swapPending = false;
+  function updateNavTitle() {
+    swapPending = false;
+    if (!headTitle) return;
+    /* 大标题底边越过导航栏底边 = 已完全被导航遮住（滚出屏幕），触发替换 */
+    var gone = headTitle.getBoundingClientRect().bottom <= nav.getBoundingClientRect().bottom;
+    nav.classList.toggle("title-in", gone);
+  }
+  window.addEventListener("scroll", function () {
+    if (!swapPending) { swapPending = true; requestAnimationFrame(updateNavTitle); }
+  }, { passive: true });
+  updateNavTitle();
 
   /* ---------- 启动 ---------- */
   applyLang(currentLang);
