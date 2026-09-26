@@ -6,6 +6,9 @@
 
 .notes-page { padding: 120px 0 60px; }
 
+/* ---------- 排版三件套：字号 / 行长 / 节奏（光效与透明玻璃卡片保留不变） ---------- */
+.notes-page .container { width: min(1024px, 92%); } /* 内容列约 700px ≈ 40 字/行 */
+
 /* ---------- 阅读可读性覆盖 ---------- */
 .notes-head h1,
 .note-ch-title h2,
@@ -168,7 +171,7 @@
 }
 
 /* ---------- 右侧内容 ---------- */
-.note-chapter { padding: 30px 32px 26px; margin-bottom: 24px; scroll-margin-top: 96px; }
+.note-chapter { padding: 34px 36px 30px; margin-bottom: 24px; scroll-margin-top: 96px; }
 .note-ch-head { margin-bottom: 8px; }
 .note-ch-title {
   display: flex;
@@ -180,7 +183,7 @@
 .note-ch-title h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: .5px; }
 .note-ch-intro { font-size: .92rem; margin-top: 6px; }
 
-.note-sec { margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); scroll-margin-top: 96px; }
+.note-sec { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--line); scroll-margin-top: 96px; }
 .note-sec:first-of-type { border-top: 0; margin-top: 18px; padding-top: 0; }
 .note-sec h3 {
   font-size: 1.08rem;
@@ -197,15 +200,14 @@
   background: var(--grad);
   flex-shrink: 0;
 }
-.note-sec ul { margin-top: 12px; }
+.note-sec ul { margin-top: 14px; }
 .note-sec li {
   position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  font-size: .92rem;
-  line-height: 1.8;
-}
-.note-sec li::before {
+  padding-left: 22px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.9;
+}.note-sec li::before {
   content: "";
   position: absolute;
   left: 2px;
