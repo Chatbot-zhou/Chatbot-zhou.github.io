@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>周晨博 · AI 应用开发工程师 | Agent / RAG</title>
+  <meta name="description" content="周晨博 — AI 应用开发工程师，专注 Agent 工作流编排与 RAG 检索优化。toC Agent 与 toB RAG 双项目实战经验，让大模型真正落地。" />
+  <meta name="keywords" content="周晨博,AI应用开发,Agent,RAG,LangChain,LangGraph,大模型" />
+  <meta property="og:title" content="周晨博 · AI 应用开发工程师" />
+  <meta property="og:description" content="专注 Agent 编排与 RAG 检索优化，让大模型真正落地。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "周晨博",
+    "alternateName": "Chenbo Zhou",
+    "jobTitle": "AI 应用开发工程师",
+    "email": "mailto:chatbotzhou@163.com",
+    "sameAs": [
+      "https://github.com/Chatbot-zhou",
+      "https://gitee.com/chatbotzhou"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 漂浮渐变光斑背景 -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-blue"></div>
+    <div class="blob blob-pink"></div>
+    <div class="blob blob-violet"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- 导航 -->
+  <header class="nav" id="siteNav">
+    <div class="nav-inner container">
+      <a class="nav-logo" href="#hero"><span data-i18n="nav.logo">周晨博</span><span class="logo-dot">.</span></a>
+
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="#about" data-i18n="nav.about">关于</a>
+        <a href="#skills" data-i18n="nav.skills">技能</a>
+        <a href="#experience" data-i18n="nav.exp">经历</a>
+        <a href="#projects" data-i18n="nav.projects">项目</a>
+        <a href="#opensource" data-i18n="nav.os">开源</a>
+        <a href="#contact" data-i18n="nav.contact">联系</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button class="ctrl-btn" id="langBtn" type="button" aria-label="切换语言" title="Switch language">EN</button>
+        <button class="ctrl-btn" id="themeBtn" type="button" aria-label="切换主题">
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button class="ctrl-btn nav-burger" id="navToggle" type="button" aria-label="菜单" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <span class="hero-badge reveal"><span class="pulse-dot"></span><span data-i18n="hero.badge">正在寻找 AI 应用开发 / FDE 相关机会</span></span>
+        <h1 class="hero-name reveal" data-delay="1"><span data-i18n="hero.name">周晨博</span></h1>
+        <p class="hero-role reveal" data-delay="2" aria-live="off"><span class="role-prefix">_</span><span id="typewriter">AI 应用开发工程师</span><span class="cursor">|</span></p>
+        <p class="hero-tagline reveal" data-delay="3" data-i18n="hero.tagline">具备 toC Agent 与 toB RAG 双项目实战经验，专注让大模型真正落地——从需求分析、方案设计到工程交付的全流程实践。</p>
+
+        <div class="hero-chips reveal" data-delay="4" aria-label="技术关键词">
+          <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Agent</span><span class="chip">RAG</span><span class="chip">MCP</span><span class="chip">FastAPI</span><span class="chip">Milvus</span><span class="chip">BERT</span>
+        </div>
+
+        <div class="hero-actions reveal" data-delay="5">
+          <a class="btn btn-primary" href="https://github.com/Chatbot-zhou" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span data-i18n="hero.btn_github">GitHub 主页</span>
+          </a>
+          <a class="btn btn-glass" href="https://gitee.com/chatbotzhou" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.984 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.016 0zm6.09 5.333H18.1v13.334h-6.23V21.3a.2.2 0 0 1-.35.133L5.4 15.3a.2.2 0 0 1 0-.266l6.12-6.134a.2.2 0 0 1 .35.133v2.634h6.2z"/></svg>
+            <span data-i18n="hero.btn_gitee">Gitee 主页</span>
+          </a>
+          <a class="btn btn-glass js-email-btn" href="mailto:chatbotzhou@163.com">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
+            <span data-i18n="hero.btn_email">邮件联系</span>
+          </a>
+        </div>
+
+        <a class="scroll-hint" href="#stats" aria-label="向下滚动">
+          <span class="mouse"><span class="wheel"></span></span>
+        </a>
+      </div>
+      <div class="hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- 数据条 -->
+    <section class="stats" id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="glass stat-card reveal">
+            <span class="stat-num" data-count="1" data-suffix="+">0</span>
+            <span class="stat-label" data-i18n="stats.s1l">年 AI 研发经历</span>
+          </div>
+          <div class="glass stat-card reveal" data-delay="1">
+            <span class="stat-num" data-count="4">0</span>
+            <span class="stat-label" data-i18n="stats.s2l">个开源作品</span>
+          </div>
+          <div class="glass stat-card reveal" data-delay="2">
+            <span class="stat-num" data-count="94" data-suffix="%">0</span>
+            <span class="stat-label" data-i18n="stats.s3l">意图识别准确率</span>
+          </div>
+          <div class="glass stat-card reveal" data-delay="3">
+            <span class="stat-num" data-count="90" data-suffix="%+">0</span>
+            <span class="stat-label" data-i18n="stats.s4l">毕设问答准确率</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">About Me</span>
+          <h2 data-i18n="about.title">关于我</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p data-i18n="about.p1">你好，我是周晨博，计算机科学与技术专业（人工智能方向）。2025 年 5 月起专注大模型应用开发，先后完成两段企业级 AI 项目实战：从企业法务 RAG 系统的数据标注、清洗做起，逐步负责口语化改写、BERT 意图模型微调、混合检索链路与 Prompt 优化，走完了 RAG 落地的完整闭环。</p>
+            <p data-i18n="about.p2">之后参与 SCI 论文智能辅助投稿系统的 Agent 研发，负责 LangGraph 工作流编排、期刊推荐知识库与 Cover Letter 生成模块，把"人工多步骤"的投稿准备整合为一条自动化流水线。</p>
+            <p data-i18n="about.p3">我相信 AI 产品的价值在于真正被用起来——熟悉需求分析 → 方案设计 → 开发实现 → 评测迭代的全流程，期待用 Agent 与 RAG 技术解决真实业务问题。</p>
+          </div>
+          <div class="glass about-card reveal" data-delay="1">
+            <h3 data-i18n="about.st_title">核心优势</h3>
+            <ul class="strength-list">
+              <li>
+                <span class="s-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M6.6 6.6 9.8 9.8m4.4 0 3.2-3.2M6.6 17.4l3.2-3.2m4.4 0 3.2 3.2"/></svg></span>
+                <div><strong data-i18n="about.s1t">Agent 编排</strong><p data-i18n="about.s1d">LangChain / LangGraph / Tool Calling / MCP，任务拆解、状态管理与多工具协同</p></div>
+              </li>
+              <li>
+                <span class="s-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+                <div><strong data-i18n="about.s2t">RAG 全链路</strong><p data-i18n="about.s2d">知识库构建、Query 改写、BM25 + 向量混合检索、Rerank 精排、RAGAS 评估迭代</p></div>
+              </li>
+              <li>
+                <span class="s-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18v3h3l5.7-5.7a4.5 4.5 0 0 0 6-6L14.5 12l-2.5-2.5z"/></svg></span>
+                <div><strong data-i18n="about.s3t">工程落地</strong><p data-i18n="about.s3d">Python / FastAPI / Milvus / Redis / Docker，接口开发、服务部署与问题排查</p></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Skills</span>
+          <h2 data-i18n="skills.title">技能栈</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="glass skill-card reveal">
+            <span class="sk-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h6.5a1 1 0 0 1 1 1V14M14 17.5H7.5a1 1 0 0 1-1-1V10"/></svg></span>
+            <h3 data-i18n="skills.g1t">大模型应用编排</h3>
+            <p data-i18n="skills.g1d">任务拆解、状态管理与多工具协同的 Agent 工作流</p>
+            <div class="tags"><span>LangChain</span><span>LangGraph</span><span>Tool Calling</span><span>MCP</span><span>Prompt Engineering</span></div>
+          </div>
+          <div class="glass skill-card reveal" data-delay="1">
+            <span class="sk-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg></span>
+            <h3 data-i18n="skills.g2t">RAG 检索优化</h3>
+            <p data-i18n="skills.g2d">从知识库构建到精排评测的完整检索链路</p>
+            <div class="tags"><span data-i18n="skills.tag.hb">混合检索</span><span>Rerank</span><span data-i18n="skills.tag.qr">Query 改写</span><span>RAGAS</span><span data-i18n="skills.tag.kb">知识库构建</span></div>
+          </div>
+          <div class="glass skill-card reveal" data-delay="2">
+            <span class="sk-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
+            <h3 data-i18n="skills.g3t">模型与算法</h3>
+            <p data-i18n="skills.g3d">模型微调、训练调优与选型应用的基础功底</p>
+            <div class="tags"><span data-i18n="skills.tag.bft">BERT 微调</span><span>Qwen3</span><span>DeepSeek-V3</span><span>LoRA / QLoRA</span><span>Transformer</span></div>
+          </div>
+          <div class="glass skill-card reveal" data-delay="3">
+            <span class="sk-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 7 8-4 8 4-8 4-8-4z"/><path d="m4 12 8 4 8-4M4 17l8 4 8-4"/></svg></span>
+            <h3 data-i18n="skills.g4t">工程化落地</h3>
+            <p data-i18n="skills.g4d">接口开发、服务部署与线上问题排查</p>
+            <div class="tags"><span>Python</span><span>FastAPI</span><span>Streamlit</span><span>Milvus</span><span>MySQL</span><span>Redis</span><span>Docker</span></div>
+          </div>
+          <div class="glass skill-card reveal" data-delay="4">
+            <span class="sk-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5 3 21l4.5-1.5M14 4c3-1.5 6.5-2 7-1.5S22 5 21 8l-6.5 6.5L10 10 14 4z"/><path d="M9 10 4 12l3 3M14 15l-2 5-3-3"/></svg></span>
+            <h3 data-i18n="skills.g5t">平台快速搭建</h3>
+            <p data-i18n="skills.g5d">低代码平台快速验证业务工作流与知识库</p>
+            <div class="tags"><span>Dify</span><span>Coze</span><span>RAGFlow</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 经历 -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Experience</span>
+          <h2 data-i18n="exp.title">经历</h2>
+        </div>
+        <ol class="timeline">
+          <li class="tl-item reveal">
+            <div class="glass tl-card">
+              <span class="tl-time">2025.12 — 2026.06</span>
+              <h3 data-i18n="exp.c1">科信盟（西安）生物科技有限公司</h3>
+              <p class="tl-role" data-i18n="exp.r1">Agent 开发工程师</p>
+              <ul>
+                <li data-i18n="exp.c1a">参与企业级 Agent 应用研发，负责 LangChain / LangGraph 任务编排、多工具调用与业务流程自动化</li>
+                <li data-i18n="exp.c1b">主导期刊推荐模块：自建期刊知识库，"论文画像 + 混合检索 + Rerank"输出候选期刊与推荐理由</li>
+                <li data-i18n="exp.c1c">设计 Prompt 模板与结构化输出方案，将业务能力封装为标准化工具服务</li>
+              </ul>
+            </div>
+          </li>
+          <li class="tl-item reveal" data-delay="1">
+            <div class="glass tl-card">
+              <span class="tl-time" data-i18n="exp.t3">教育背景</span>
+              <h3 data-i18n="exp.u">西安理工大学高科学院</h3>
+              <p class="tl-role" data-i18n="exp.r3">本科 · 计算机科学与技术（人工智能方向）</p>
+              <ul>
+                <li data-i18n="exp.u1">主修：数据库原理、计算机网络、算法分析与设计、人工智能、Linux 操作系统、大数据技术等</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 项目 -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Projects</span>
+          <h2 data-i18n="proj.title">项目</h2>
+        </div>
+        <div class="proj-grid">
+          <article class="glass proj-card reveal">
+            <div class="proj-head">
+              <span class="badge badge-blue" data-i18n="proj.p1badge">Agent · toC</span>
+            </div>
+            <h3 data-i18n="proj.p1t">SCI 论文智能辅助投稿系统</h3>
+            <p class="proj-desc" data-i18n="proj.p1d">面向科研人员的多节点 Agent 工作流：论文解析 → 期刊推荐 → 规范审查 → 材料生成，LangGraph 负责任务调度与上下文状态管理。</p>
+            <ul class="proj-hl">
+              <li data-i18n="proj.p1hl1">自建生物医学期刊知识库（Scope / 分区 / 投稿类型向量化入库），"论文画像 + 混合检索 + Rerank"生成推荐理由</li>
+              <li data-i18n="proj.p1hl2">论文解析模块抽取标题 / 摘要 / 研究方向 / 创新点，生成标准化"论文画像"</li>
+              <li data-i18n="proj.p1hl3">Cover Letter 自动生成：Prompt 模板 + Tool Calling 接入期刊检索与格式审查工具</li>
+            </ul>
+            <div class="tags"><span>LangGraph</span><span>MCP</span><span>FastAPI</span><span>Milvus</span><span>Qwen3</span><span>DeepSeek-V3</span></div>
+          </article>
+
+          <article class="glass proj-card reveal" data-delay="1">
+            <div class="proj-head">
+              <span class="badge badge-pink" data-i18n="proj.p2badge">RAG · toB</span>
+            </div>
+            <h3 data-i18n="proj.p2t">企业法务咨询助手</h3>
+            <p class="proj-desc" data-i18n="proj.p2d">面向企业法务场景的智能问答系统：离线构建法务知识库，在线"意图识别 → Query 改写 → 混合检索 → 润色生成"全链路问答。</p>
+            <ul class="proj-hl">
+              <li data-i18n="proj.p2hl1">BERT 意图分类模型微调（裁判文书网 + 真实法务案例数据增强），意图识别准确率 94%</li>
+              <li data-i18n="proj.p2hl2">BM25 + 向量粗召回 + Rerank 精排的混合检索，Redis 热点缓存加速高频问答</li>
+              <li data-i18n="proj.p2hl3">四大法务场景差异化 Prompt 与 Few-shot 设计，RAGAS 驱动评估与迭代</li>
+            </ul>
+            <div class="tags"><span>LangChain</span><span>BERT</span><span>Milvus</span><span>BM25</span><span>Redis</span><span>RAGAS</span></div>
+          </article>
+
+          <article class="glass proj-card proj-small reveal" data-delay="2">
+            <div class="proj-head">
+              <span class="badge badge-violet" data-i18n="proj.p3badge">Agent · 毕业设计</span>
+            </div>
+            <h3 data-i18n="proj.p3t">高校专业介绍问答机器人</h3>
+            <p class="proj-desc" data-i18n="proj.p3d">基于 Coze 框架设计问答逻辑并构建高校专业知识库，通过 Prompt 工程优化交互，实现专业信息查询与报考建议，回答准确率 90% 以上。</p>
+            <div class="tags"><span>Coze</span><span data-i18n="proj.tag.pe">Prompt 工程</span><span data-i18n="proj.tag.kb">知识库</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 开源 -->
+    <section class="section" id="opensource">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Open Source</span>
+          <h2 data-i18n="os.title">开源作品</h2>
+        </div>
+        <div class="os-grid">
+          <a class="glass os-card reveal" href="https://github.com/Chatbot-zhou/fruits-ecommerce" target="_blank" rel="noopener">
+            <div class="os-top">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <h3>fruits-ecommerce</h3>
+            </div>
+            <p data-i18n="os.d1">生鲜电商「鲜果蔬语」智能客服系统：覆盖商品咨询、多品对比、订单物流、售后判责、转人工等七大场景。</p>
+            <div class="os-foot">
+              <span class="lang-dot" style="--dot:#3572A5"></span><span class="os-lang">Python</span>
+              <span class="os-link" data-i18n="os.view">查看仓库 →</span>
+            </div>
+          </a>
+          <a class="glass os-card reveal" data-delay="1" href="https://github.com/Chatbot-zhou/FanFan" target="_blank" rel="noopener">
+            <div class="os-top">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <h3>FanFan · 翻翻</h3>
+            </div>
+            <p data-i18n="os.d2">完全本地化的 AI 信息管理助手：帮你理解、整理、找回电脑中散落的资料，让被遗忘的信息重新产生价值。</p>
+            <div class="os-foot">
+              <span class="lang-dot" style="--dot:#dea584"></span><span class="os-lang">Rust</span>
+              <span class="os-link" data-i18n="os.view">查看仓库 →</span>
+            </div>
+          </a>
+          <a class="glass os-card reveal" data-delay="2" href="https://github.com/Chatbot-zhou/job-seeker" target="_blank" rel="noopener">
+            <div class="os-top">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <h3>job-seeker</h3>
+            </div>
+            <p data-i18n="os.d3">用 AI 帮助求职者自动找寻匹配岗位的辅助工具。</p>
+            <div class="os-foot">
+              <span class="lang-dot" style="--dot:#f1e05a"></span><span class="os-lang">JavaScript</span>
+              <span class="os-link" data-i18n="os.view">查看仓库 →</span>
+            </div>
+          </a>
+          <a class="glass os-card reveal" data-delay="3" href="https://github.com/Chatbot-zhou/renhua.py" target="_blank" rel="noopener">
+            <div class="os-top">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <h3>renhua.py</h3>
+            </div>
+            <p data-i18n="os.d4">把你的中文，翻译成 Python 话。</p>
+            <div class="os-foot">
+              <span class="lang-dot" style="--dot:#3178c6"></span><span class="os-lang">TypeScript</span>
+              <span class="os-link" data-i18n="os.view">查看仓库 →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系 -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="glass contact-card reveal">
+          <span class="eyebrow">Contact</span>
+          <h2 data-i18n="contact.t">一起做点有意思的事？</h2>
+          <p data-i18n="contact.d">正在寻找 AI 应用开发 / FDE 相关机会，欢迎通过邮箱或 GitHub 联系我。</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary js-email-btn" href="mailto:chatbotzhou@163.com">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
+              <span data-i18n="contact.btn_email">发邮件聊聊</span>
+            </a>
+            <a class="btn btn-glass" href="https://github.com/Chatbot-zhou" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-glass" href="https://gitee.com/chatbotzhou" target="_blank" rel="noopener">Gitee</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><span data-i18n="footer.built">© 2026 周晨博 · 原生 HTML / CSS / JS 构建</span> · <span data-i18n="footer.hosted">托管于 Upma</span></p>
+  </footer>
+
+  <!-- 邮箱弹窗 -->
+  <div class="modal-overlay" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle" aria-hidden="true">
+    <div class="glass modal-card">
+      <button class="modal-close" id="emailModalClose" type="button" aria-label="关闭">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <span class="eyebrow">Email</span>
+      <h3 id="emailModalTitle" data-i18n="modal.title">我的邮箱</h3>
+      <p class="modal-email">chatbotzhou@163.com</p>
+      <p class="modal-hint" data-i18n="modal.hint">点击复制邮箱地址，或打开邮件应用直接发送</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="emailCopyBtn" type="button">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5V5"/></svg>
+          <span data-i18n="modal.copy">复制邮箱</span>
+        </button>
+        <a class="btn btn-glass" href="mailto:chatbotzhou@163.com">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
+          <span data-i18n="modal.open">打开邮件应用</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
