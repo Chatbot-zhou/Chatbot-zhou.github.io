@@ -225,6 +225,14 @@
   backdrop-filter: blur(6px);
 }
 
+/* ---------- 阅读优先：禁用笔记页卡片的炫光扫过与悬浮动效 ---------- */
+.notes-page .glass::before { display: none; }
+.notes-page .glass:hover {
+  transform: none;
+  border-color: var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 960px) {
   .notes-page { padding-top: 104px; }
