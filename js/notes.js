@@ -199,13 +199,15 @@
   var sidebar = $("#sidebar");
   var fab = $("#tocFab");
   var mask = $("#tocMask");
-  /* 开合用内联样式驱动 transform：内联优先级最高，不依赖级联与动画状态，
-     任何内核（含后台恢复、渲染节流）下都立即可靠 */
+  var ghostGuard = 0; /* 关闭后的幽灵点击护栏时间戳 */
+  /* 开合用类切换驱动 transform：仅在 click 完成后关闭，
+     不用 pointerup 提前收起——避免面板瞬间消失后点击穿透到下层按钮 */
   function closeDrawer() {
     sidebar.classList.remove("drawer-open");
     sidebar.style.transform = "";
     mask.hidden = true;
     document.body.classList.remove("drawer-lock");
+    ghostGuard = Date.now();
   }
   function openDrawer() {
     sidebar.classList.add("drawer-open");
@@ -217,13 +219,12 @@
     var open = sidebar.classList.contains("drawer-open");
     if (open) closeDrawer(); else openDrawer();
   });
-  /* 文档级委托 + pointerup 兜底：部分移动内核对动态元素的 click 合成不可靠 */
+  /* 文档级委托 + 幽灵点击护栏（捕获阶段吞掉关闭后 400ms 内的后续点击，
+     防止 × 关闭抽屉后点击穿透到下层导航按钮） */
   document.addEventListener("click", function (e) {
+    if (Date.now() - ghostGuard < 400) { e.stopPropagation(); e.preventDefault(); return; }
     if (e.target && e.target.closest && e.target.closest("#tocClose")) closeDrawer();
-  });
-  document.addEventListener("pointerup", function (e) {
-    if (e.target && e.target.closest && e.target.closest("#tocClose")) closeDrawer();
-  });
+  }, true);
   mask.addEventListener("click", closeDrawer);
   tocNav.addEventListener("click", function (e) {
     if (e.target.closest(".toc-link") && window.innerWidth <= 960) closeDrawer();
