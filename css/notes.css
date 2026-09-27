@@ -288,6 +288,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     border-radius: 0 22px 22px 0;
     padding-top: calc(52px + env(safe-area-inset-top, 0px));
     transform: translateX(-105%);
+    /* 覆盖 .glass 的 transform 过渡：瞬时开合，杜绝冻结风险 */
+    transition: none;
     overscroll-behavior: contain;
   }
   .notes-sidebar.drawer-open { transform: none; }
