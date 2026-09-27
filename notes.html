@@ -6,8 +6,8 @@
   <title>笔记 · 周晨博 · AI 应用开发工程师 | Agent / RAG</title>
   <meta name="description" content="以大模型开发为核心的知识笔记：大模型原理与 2026 格局、提示词与上下文工程、智能体平台、LangChain/LangGraph、RAG、Agent 与多智能体、微调、部署、多模态等 9 大知识域。" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/style.css?v=20260927c" />
-  <link rel="stylesheet" href="css/notes.css?v=20260927c" />
+  <link rel="stylesheet" href="css/style.css?v=20260927d" />
+  <link rel="stylesheet" href="css/notes.css?v=20260927d" />
 </head>
 <body class="page-notes">
 
@@ -23,16 +23,6 @@
     <div class="nav-inner container">
       <a class="nav-logo" href="index.html"><span data-i18n="nav.logo">周晨博</span><span class="logo-dot">.</span></a>
 
-      <nav class="nav-links" id="navLinks" aria-label="主导航">
-        <a href="index.html#about" data-i18n="nav.about">关于</a>
-        <a href="index.html#skills" data-i18n="nav.skills">技能</a>
-        <a href="index.html#experience" data-i18n="nav.exp">经历</a>
-        <a href="index.html#projects" data-i18n="nav.projects">项目</a>
-        <a href="index.html#opensource" data-i18n="nav.os">开源</a>
-        <a href="notes.html" class="active" data-i18n="nav.notes">笔记</a>
-        <a href="index.html#contact" data-i18n="nav.contact">联系</a>
-      </nav>
-
       <div class="nav-controls">
         <button class="ctrl-btn" id="langBtn" type="button" aria-label="切换语言" title="Switch language">EN</button>
         <button class="ctrl-btn" id="themeBtn" type="button" aria-label="切换主题">
@@ -44,6 +34,18 @@
         </button>
       </div>
     </div>
+
+    <!-- 下拉菜单独立于 .nav-inner 之外：带 backdrop-filter 的祖先会阻断子元素
+         采样页面背景，移出后移动端下拉的毛玻璃才能与导航栏一致地模糊 -->
+    <nav class="nav-links" id="navLinks" aria-label="主导航">
+      <a href="index.html#about" data-i18n="nav.about">关于</a>
+      <a href="index.html#skills" data-i18n="nav.skills">技能</a>
+      <a href="index.html#experience" data-i18n="nav.exp">经历</a>
+      <a href="index.html#projects" data-i18n="nav.projects">项目</a>
+      <a href="index.html#opensource" data-i18n="nav.os">开源</a>
+      <a href="notes.html" class="active" data-i18n="nav.notes">笔记</a>
+      <a href="index.html#contact" data-i18n="nav.contact">联系</a>
+    </nav>
   </header>
 
   <main class="notes-page">

@@ -10,7 +10,7 @@
   <meta property="og:description" content="专注 Agent 编排与 RAG 检索优化，让大模型真正落地。" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/style.css?v=20260927c" />
+  <link rel="stylesheet" href="css/style.css?v=20260927d" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,16 +41,6 @@
     <div class="nav-inner container">
       <a class="nav-logo" href="#hero"><span data-i18n="nav.logo">周晨博</span><span class="logo-dot">.</span></a>
 
-      <nav class="nav-links" id="navLinks" aria-label="主导航">
-        <a href="#about" data-i18n="nav.about">关于</a>
-        <a href="#skills" data-i18n="nav.skills">技能</a>
-        <a href="#experience" data-i18n="nav.exp">经历</a>
-        <a href="#projects" data-i18n="nav.projects">项目</a>
-        <a href="#opensource" data-i18n="nav.os">开源</a>
-        <a href="notes.html" data-i18n="nav.notes">笔记</a>
-        <a href="#contact" data-i18n="nav.contact">联系</a>
-      </nav>
-
       <div class="nav-controls">
         <button class="ctrl-btn" id="langBtn" type="button" aria-label="切换语言" title="Switch language">EN</button>
         <button class="ctrl-btn" id="themeBtn" type="button" aria-label="切换主题">
@@ -62,6 +52,18 @@
         </button>
       </div>
     </div>
+
+    <!-- 下拉菜单独立于 .nav-inner 之外：带 backdrop-filter 的祖先会阻断子元素
+         采样页面背景，移出后移动端下拉的毛玻璃才能与导航栏一致地模糊 -->
+    <nav class="nav-links" id="navLinks" aria-label="主导航">
+      <a href="#about" data-i18n="nav.about">关于</a>
+      <a href="#skills" data-i18n="nav.skills">技能</a>
+      <a href="#experience" data-i18n="nav.exp">经历</a>
+      <a href="#projects" data-i18n="nav.projects">项目</a>
+      <a href="#opensource" data-i18n="nav.os">开源</a>
+      <a href="notes.html" data-i18n="nav.notes">笔记</a>
+      <a href="#contact" data-i18n="nav.contact">联系</a>
+    </nav>
   </header>
 
   <main>

@@ -276,8 +276,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   inset: 0;
   z-index: 149;
   background: rgba(30, 41, 59, .38);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  /* 仅压暗不模糊：用户要求打开目录后页面背景保持清晰 */
 }
 
 /* ---------- 阅读优先：禁用笔记页卡片的炫光扫过与悬浮动效 ---------- */
@@ -311,6 +310,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     /* 覆盖 .glass 的 transform 过渡：瞬时开合，杜绝冻结风险 */
     transition: none;
     overscroll-behavior: contain;
+    /* 与导航栏同款毛玻璃：--nav-bg 底 + 一致模糊参数（覆盖 .glass 的 --card 底） */
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
   }
   .notes-sidebar.drawer-open { transform: none; }
   .toc-fab {

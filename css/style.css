@@ -209,7 +209,16 @@ button { font-family: inherit; }
 }
 .logo-dot { color: var(--accent-pink-deep); font-size: 1.5rem; line-height: 0; }
 
-.nav-links { display: flex; gap: 4px; }
+/* 桌面端链接组绝对定位居中：已移出 .nav-inner 的 flex 行，
+   让移动端下拉不受导航栏 backdrop-filter 的背景根边界阻断 */
+.nav-links {
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .nav-links a {
   padding: 7px 14px;
   border-radius: 12px;
@@ -829,7 +838,7 @@ body.modal-open { overflow: hidden; }
   .nav-links {
     position: absolute;
     top: calc(100% + 8px);
-    left: 0; right: 0;
+    left: 4%; right: 4%;
     flex-direction: column;
     gap: 4px;
     padding: 12px;
