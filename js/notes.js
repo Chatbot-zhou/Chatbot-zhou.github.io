@@ -199,13 +199,17 @@
   var sidebar = $("#sidebar");
   var fab = $("#tocFab");
   var mask = $("#tocMask");
+  /* 开合用内联样式驱动 transform：内联优先级最高，不依赖级联与动画状态，
+     任何内核（含后台恢复、渲染节流）下都立即可靠 */
   function closeDrawer() {
     sidebar.classList.remove("drawer-open");
+    sidebar.style.transform = "";
     mask.hidden = true;
     document.body.classList.remove("drawer-lock");
   }
   function openDrawer() {
     sidebar.classList.add("drawer-open");
+    sidebar.style.transform = "translateX(0)";
     mask.hidden = false;
     document.body.classList.add("drawer-lock");
   }
@@ -213,8 +217,11 @@
     var open = sidebar.classList.contains("drawer-open");
     if (open) closeDrawer(); else openDrawer();
   });
-  /* 文档级委托：即使按钮被重渲染或事件未直接绑定也能关闭 */
+  /* 文档级委托 + pointerup 兜底：部分移动内核对动态元素的 click 合成不可靠 */
   document.addEventListener("click", function (e) {
+    if (e.target && e.target.closest && e.target.closest("#tocClose")) closeDrawer();
+  });
+  document.addEventListener("pointerup", function (e) {
     if (e.target && e.target.closest && e.target.closest("#tocClose")) closeDrawer();
   });
   mask.addEventListener("click", closeDrawer);
@@ -222,7 +229,18 @@
     if (e.target.closest(".toc-link") && window.innerWidth <= 960) closeDrawer();
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeDrawer();
+    if (e.key === "Escape") {
+      if (searchInput.value) { searchInput.value = ""; searchInput.dispatchEvent(new Event("input")); }
+      closeDrawer();
+      searchInput.blur();
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      /* PC 快捷键：Ctrl/Cmd+K 聚焦目录搜索（移动端唤起目录） */
+      e.preventDefault();
+      if (window.innerWidth <= 960) openDrawer(); else { searchInput.focus(); searchInput.select(); }
+    } else if (e.key === "/" && !/^(INPUT|TEXTAREA)$/.test((document.activeElement || {}).tagName || "")) {
+      e.preventDefault();
+      searchInput.focus();
+    }
   });
 
   /* ---------- 导航滚动态 ---------- */

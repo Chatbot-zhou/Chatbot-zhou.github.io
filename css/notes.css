@@ -4,6 +4,8 @@
    关键词用高对比深蓝/深玫红，禁用灰色淡色正文
    ============================================================ */
 
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
 .notes-page { padding: 120px 0 60px; }
 
 /* ---------- 排版三件套：字号 / 行长 / 节奏（光效与透明玻璃卡片保留不变） ---------- */
@@ -93,6 +95,17 @@
   font-family: inherit;
 }
 .toc-search input::placeholder { color: var(--text-faint); }
+.toc-kbd {
+  display: inline-block;
+  flex-shrink: 0;
+  font-family: Consolas, Menlo, monospace;
+  font-size: .68rem;
+  color: var(--text-faint);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0 5px;
+  line-height: 1.5;
+}
 
 .toc-nav { flex: 1; overflow-y: auto; padding-right: 4px; }
 .toc-nav::-webkit-scrollbar { width: 5px; }
@@ -273,7 +286,7 @@
     z-index: 150;
     max-height: none;
     border-radius: 0 22px 22px 0;
-    padding-top: 52px;
+    padding-top: calc(52px + env(safe-area-inset-top, 0px));
     transform: translateX(-105%);
     overscroll-behavior: contain;
   }
@@ -281,26 +294,34 @@
   .toc-close {
     display: inline-flex;
     position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    right: 10px;
+    width: 40px;
+    height: 40px;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 11px;
     border: 1px solid var(--line);
     background: var(--card);
     color: var(--text-soft);
     cursor: pointer;
     z-index: 5;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
-  .toc-fab { display: inline-flex; bottom: calc(18px + env(safe-area-inset-bottom)); }
+  .toc-fab {
+    display: inline-flex;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
   body.drawer-lock { overflow: hidden; }
 
   /* 触屏可读性：目录项加大点击区，输入框 16px 防 iOS 聚焦缩放 */
   .toc-link { padding: 10px 10px 10px 14px; }
   .toc-ch-head { padding: 11px 10px; }
   .toc-search input { font-size: 16px; }
+  .toc-fab, .toc-close, .toc-link, .toc-ch-head { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
   .note-chapter { padding: 26px 20px 22px; }
   .note-ch-title h2 { font-size: 1.28rem; }
