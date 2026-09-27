@@ -62,7 +62,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 /* ---------- 左侧目录 ---------- */
 /* 关闭按钮仅用于移动端抽屉；桌面端隐藏（否则裸 button 显示为方框叉号） */
-.toc-close { display: none; }
 .notes-sidebar {
   position: sticky;
   top: 92px;
@@ -314,24 +313,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     overscroll-behavior: contain;
   }
   .notes-sidebar.drawer-open { transform: none; }
-  .toc-close {
-    display: inline-flex;
-    position: absolute;
-    top: calc(10px + env(safe-area-inset-top, 0px));
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 11px;
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--text-soft);
-    cursor: pointer;
-    z-index: 5;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
   .toc-fab {
     display: inline-flex;
     bottom: calc(18px + env(safe-area-inset-bottom, 0px));
@@ -344,7 +325,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .toc-link { padding: 10px 10px 10px 14px; }
   .toc-ch-head { padding: 11px 10px; }
   .toc-search input { font-size: 16px; }
-  .toc-fab, .toc-close, .toc-link, .toc-ch-head { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .toc-fab, .toc-link, .toc-ch-head { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
   .note-chapter { padding: 26px 20px 22px; }
   .note-ch-title h2 { font-size: 1.28rem; }

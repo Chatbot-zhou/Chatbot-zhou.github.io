@@ -131,6 +131,13 @@
     var open = nav.classList.toggle("menu-open");
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
+  /* 点击菜单外区域关闭（菜单本体与汉堡按钮除外） */
+  document.addEventListener("click", function (e) {
+    if (!nav.classList.contains("menu-open")) return;
+    if (e.target.closest && (e.target.closest(".nav-links") || e.target.closest(".nav-burger") || e.target.closest("#navToggle"))) return;
+    nav.classList.remove("menu-open");
+    navToggle.setAttribute("aria-expanded", "false");
+  });
   $$(".nav-links a").forEach(function (a) {
     a.addEventListener("click", function () {
       nav.classList.remove("menu-open");

@@ -199,15 +199,13 @@
   var sidebar = $("#sidebar");
   var fab = $("#tocFab");
   var mask = $("#tocMask");
-  var ghostGuard = 0; /* 关闭后的幽灵点击护栏时间戳 */
-  /* 开合用类切换驱动 transform：仅在 click 完成后关闭，
-     不用 pointerup 提前收起——避免面板瞬间消失后点击穿透到下层按钮 */
+  /* 关闭路径：FAB 切换、遮罩点击、抽屉内链接、Esc；
+     开合用类切换驱动 transform（无过渡，任何内核下瞬时可靠） */
   function closeDrawer() {
     sidebar.classList.remove("drawer-open");
     sidebar.style.transform = "";
     mask.hidden = true;
     document.body.classList.remove("drawer-lock");
-    ghostGuard = Date.now();
   }
   function openDrawer() {
     sidebar.classList.add("drawer-open");
@@ -219,12 +217,6 @@
     var open = sidebar.classList.contains("drawer-open");
     if (open) closeDrawer(); else openDrawer();
   });
-  /* 文档级委托 + 幽灵点击护栏（捕获阶段吞掉关闭后 400ms 内的后续点击，
-     防止 × 关闭抽屉后点击穿透到下层导航按钮） */
-  document.addEventListener("click", function (e) {
-    if (Date.now() - ghostGuard < 400) { e.stopPropagation(); e.preventDefault(); return; }
-    if (e.target && e.target.closest && e.target.closest("#tocClose")) closeDrawer();
-  }, true);
   mask.addEventListener("click", closeDrawer);
   tocNav.addEventListener("click", function (e) {
     if (e.target.closest(".toc-link") && window.innerWidth <= 960) closeDrawer();
@@ -255,6 +247,13 @@
   navToggle.addEventListener("click", function () {
     var open = nav.classList.toggle("menu-open");
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  /* 点击菜单外区域关闭（菜单本体与汉堡按钮除外） */
+  document.addEventListener("click", function (e) {
+    if (!nav.classList.contains("menu-open")) return;
+    if (e.target.closest && (e.target.closest(".nav-links") || e.target.closest(".nav-burger") || e.target.closest("#navToggle"))) return;
+    nav.classList.remove("menu-open");
+    navToggle.setAttribute("aria-expanded", "false");
   });
   $$(".nav-links a").forEach(function (a) {
     a.addEventListener("click", function () {
