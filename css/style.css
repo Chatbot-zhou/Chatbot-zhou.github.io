@@ -32,6 +32,7 @@
   --chip-pink-text: #d0508a;
 
   --nav-bg: rgba(250, 252, 255, .58);
+  --nav-dropdown-bg: rgba(255, 255, 255, .97);
   --line: rgba(93, 120, 160, .16);
   --blob-opacity: .72;
   --grid-line: rgba(93, 120, 160, .08);
@@ -68,6 +69,7 @@
   --chip-pink-text: #f9b8d4;
 
   --nav-bg: rgba(11, 18, 32, .72);
+  --nav-dropdown-bg: rgba(15, 23, 42, .97);
   --line: rgba(160, 190, 230, .13);
   --blob-opacity: .3;
   --grid-line: rgba(160, 190, 230, .05);
@@ -834,9 +836,11 @@ body.modal-open { overflow: hidden; }
     gap: 4px;
     padding: 12px;
     border-radius: 18px;
-    background: var(--nav-bg);
+    background: var(--nav-dropdown-bg);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    backdrop-filter: blur(24px) saturate(1.6);
     border: 1px solid var(--card-border);
-    box-shadow: 0 16px 40px rgba(84, 130, 200, .18);
+    box-shadow: 0 20px 48px rgba(15, 35, 80, .22);
     opacity: 0;
     transform: translateY(-8px) scale(.98);
     pointer-events: none;
