@@ -261,9 +261,9 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   padding: 11px 18px;
   border-radius: 999px;
   border: 1px solid var(--card-border);
-  background: var(--card-strong);
-  -webkit-backdrop-filter: blur(16px) saturate(1.5);
-  backdrop-filter: blur(16px) saturate(1.5);
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
   color: var(--text);
   font-size: .88rem;
   font-weight: 700;
